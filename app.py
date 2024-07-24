@@ -1,5 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect,url_for
 from flask_bootstrap import Bootstrap5
+from add_book_form import BookForm
 from flask_font_awesome import FontAwesome
 from flask_mysqldb import MySQL
 
@@ -13,6 +14,7 @@ app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'root'
 app.config['MYSQL_DB'] = 'library'
+app.secret_key = 'blablablabla'
 mysql = MySQL(app)
 
 def createBooksDict():
@@ -22,12 +24,11 @@ def createBooksDict():
     booksArray = []
     book = {}
     for row in rows:
-        cursor.execute(f"SELECT author_name FROM library.book, library.author WHERE book.authorID = author.id AND bookname = '{row['bookname']}'")
         author_name = cursor.fetchone()
         book = {
             'name': row['bookname'],
             'year': row['bookyear'],
-            'author': author_name['author_name'],
+            'author': row['author_name'],
             'description': row['bookdescription'],
             'image_url': row['image_url'],
             'wikipedia_url': row['link']
@@ -48,16 +49,18 @@ def createBooksDict():
 def index():
     return render_template('index.html', books = createBooksDict())
 
-@app.route('/add')
-def add_book():
-    return render_template('add.html')
 
 @app.route('/test', methods=['GET'])
 def testing():
     return render_template('test.html', books = createBooksDict())
 
+@app.route('/add', methods=["GET", "POST"])
+def add_book():
+    form = BookForm()
+    if form.validate_on_submit():
+        return redirect(url_for('index'))
+    return render_template('add.html', form=form)
+
+
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=8000, debug=True)
-
-
-
