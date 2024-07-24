@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block title %}PROVA{% endblock %}
+{% set active_page = 'test' %}
+{% block head %}
+{{ super() }}
+
+{% endblock %}
+{% block content %}
+<div class="container mt-5 vertical-center  text-center bg-light rounded-3">
+    <div class="row justify-content-evenly align-items-center g-3">
+        <ul>
+            {% for book in books %}
+            <div class="col">
+                <div class="card mx-auto shadow" style="width: 22rem;">
+                    <!-- <img src="..." class="card-img-top" alt="..."> -->
+                    <div class="card-body">
+                        <h5 class="card-title">{{book}}</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the
+                            card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </ul>
+
+    </div>
+</div>
+
+
+{% endblock %}
