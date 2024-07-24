@@ -8,23 +8,28 @@
 {% block content %}
 <div class="container mt-5 vertical-center  text-center bg-light rounded-3">
     <div class="row justify-content-evenly align-items-center g-3">
-        <ul>
-            {% for book in books %}
-            <div class="col">
-                <div class="card mx-auto shadow" style="width: 22rem;">
-                    <!-- <img src="..." class="card-img-top" alt="..."> -->
-                    <div class="card-body">
-                        <h5 class="card-title">{{book}}</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
+        {% for book in books %}
+        <div class="col">
+            <div class="card mx-auto shadow" style="width: 22rem;">
+                <img src='{{book.image_url}}' class="card-img-top" alt="Book Image"
+                    style="height: 25vh; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">{{book.name}}</h5>
+                    <p class="card-text">
+                        <b>Anno di Uscita: </b> {{book.year}} <br>
+                        <b>Autore: </b> {{book.author}}<br>
+                        <b>Descrizione: </b> {{book.description}}
+                    </p>
+                    <a href="{{book.wikipedia_url}}" target="_blank" class="btn btn-primary my-2">
+                        <i class="fa-brands fa-wikipedia-w fa-xl"></i> Link Wikipedia
+                    </a>
+                    <a href="" class="btn btn-danger">
+                        <i class="fa-solid fa-trash fa-xl"></i> Rimuovi
+                    </a>
                 </div>
             </div>
-            {% endfor %}
-        </ul>
-
+        </div>
+        {% endfor %}
     </div>
 </div>
 
