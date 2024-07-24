@@ -1,8 +1,9 @@
-from flask import Flask, render_template, redirect,url_for
+from flask import Flask, render_template, redirect,url_for, request
 from flask_bootstrap import Bootstrap5
 from add_book_form import BookForm
 from flask_font_awesome import FontAwesome
 from flask_mysqldb import MySQL
+from termcolor import colored
 
 import MySQLdb.cursors
 import re
@@ -26,6 +27,7 @@ def createBooksDict():
     for row in rows:
         author_name = cursor.fetchone()
         book = {
+            'id': row['id'],
             'name': row['bookname'],
             'year': row['bookyear'],
             'author': row['author_name'],
@@ -33,7 +35,6 @@ def createBooksDict():
             'image_url': row['image_url'],
             'wikipedia_url': row['link']
         }
-        print(row['image_url'])
         booksArray.append(book)
 
     return booksArray
@@ -58,8 +59,29 @@ def testing():
 def add_book():
     form = BookForm()
     if form.validate_on_submit():
+        book_name = form.book_name.data
+        book_year = form.book_year.data
+        author_name = form.author_name.data
+        wikipedia_link = form.wikipedia_link.data
+        book_description = form.book_description.data
+        image_url = form.image_url.data
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        print(colored('|QUESTO è CIO CHE VIENE INSERITO|', 'red'))
+        print(f"INSERT INTO `library`.`book` (`bookname`, `author_name`, `bookyear`, `link`, `bookdescription`, `image_url`) VALUES ('{book_name}', '{author_name}', '{book_year}', '{wikipedia_link}', '{book_description}', '{image_url}');")
+        cursor.execute(f"INSERT INTO `library`.`book` (`bookname`, `author_name`, `bookyear`, `link`, `bookdescription`, `image_url`) VALUES ('{book_name}', '{author_name}', '{book_year}', '{wikipedia_link}', '{book_description}', '{image_url}');")
+        mysql.connection.commit()
         return redirect(url_for('index'))
     return render_template('add.html', form=form)
+
+@app.route("/delete")
+def delete():
+    book_id = request.args.get('id')
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute(f"DELETE FROM `library`.`book` WHERE (`id` = '{book_id}');")
+    mysql.connection.commit()
+
+    print(book_id)
+    return redirect(url_for('index'))
 
 
 if __name__ == '__main__':

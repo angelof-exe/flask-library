@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SelectField, DateField, IntegerField
-from wtforms.validators import DataRequired, URL, InputRequired, NumberRange, ValidationError
+from wtforms.validators import DataRequired, URL, InputRequired, NumberRange, ValidationError, Length
 import datetime
 
 def validate_year(form, field):
@@ -14,7 +14,7 @@ class BookForm(FlaskForm):
     book_year = IntegerField('Book Year', [InputRequired(),NumberRange(min=1900, max=datetime.datetime.now().year),validate_year])
     author_name = StringField('Author Name', validators=[DataRequired()])
     wikipedia_link = StringField('Wikipedia Link', validators=[DataRequired(), URL()])
-    book_description = StringField('Book Description', validators=[DataRequired()])
+    book_description = StringField('Book Description', validators=[DataRequired(), Length(max=200)])
     image_url = StringField('Image URL', validators=[DataRequired(), URL()])
 
     submit = SubmitField('Submit')

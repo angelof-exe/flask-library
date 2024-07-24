@@ -38,22 +38,5 @@ mysql = MySQL(app)
 
 with app.app_context():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute('SELECT * FROM library.book;')
-    rows = cursor.fetchall()
-    arr = []
-    books = {}
-    for row in rows:
-        # print(f"SELECT author_name FROM library.book, library.author WHERE book.authorID = author.id AND bookname = {row['bookname']}")
-        # cursor.execute(f"SELECT author_name FROM library.book, library.author WHERE book.authorID = author.id AND bookname = '{row['bookname']}'")
-        author_name = cursor.fetchone()
-        books = {
-            'name': row['bookname'],
-            'year': row['bookyear'],
-            # 'author': author_name['author_name'],
-            'author': row['author_name'],
-            'description': row['desc']
-        }
-        arr.append(books)
-        # print(author_name)
-    for i in arr:
-        print(i)
+    cursor.execute("INSERT INTO `library`.`book` (`bookname`, `author_name`, `bookyear`, `link`, `bookdescription`) VALUES ('prova Libro aggiunto da python 22', 'Python2', '2023', '', '');")
+    mysql.connection.commit()
