@@ -2,6 +2,9 @@
  <h1> 📚 Book Management </h1>
 </div>
 
+![screenshot](https://raw.githubusercontent.com/angelof-exe/flask-library/main/screenshot/screenshot.png)
+
+
 ## Riguardo al progetto
 
 WebApp realizzata in **Flask**, permette di aggiungere dei libri all'interno di una libreria o anche di rimuoverli tramite interfaccia Web. I libri vengono immagazzinati in un DataBase gestito con **MySQL**.
