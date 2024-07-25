@@ -7,11 +7,11 @@
 
 ## Indice
 - [Riguardo al progetto](#riguardo-al-progetto)
-    - [Creato con](###Built-with)
-- [Installazione e Setup](##installazione-e-Setup)
-    - [Prerequisiti](###prerequisiti)
-    - [Installazione](###installazione)
-- [Utilizzo](##utilizzo)
+    - [Creato con](#Built-with)
+- [Installazione e Setup](#installazione-e-Setup)
+    - [Prerequisiti](#prerequisiti)
+    - [Installazione](#installazione)
+- [Utilizzo](#utilizzo)
 
 ## Riguardo al progetto
 
