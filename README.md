@@ -7,7 +7,7 @@
 
 ## Indice
 - [Riguardo al progetto](#riguardo-al-progetto)
-    - [Creato con](#Built-with)
+    - [Creato con](#creato-con)
 - [Installazione e Setup](#installazione-e-Setup)
     - [Prerequisiti](#prerequisiti)
     - [Installazione](#installazione)
