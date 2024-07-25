@@ -59,11 +59,11 @@ def testing():
 def add_book():
     form = BookForm()
     if form.validate_on_submit():
-        book_name = form.book_name.data
+        book_name = str(form.book_name.data).replace("'", "\\'")
         book_year = form.book_year.data
-        author_name = form.author_name.data
+        author_name = str(form.author_name.data).replace("'", "\\'")
         wikipedia_link = form.wikipedia_link.data
-        book_description = form.book_description.data
+        book_description = str(form.book_description.data).replace("'", "\\'")
         image_url = form.image_url.data
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         print(colored('|QUESTO è CIO CHE VIENE INSERITO|', 'red'))
