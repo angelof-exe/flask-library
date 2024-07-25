@@ -55,6 +55,7 @@ Per altre informazioni consulare la [documentazione di Python sul come creare am
 ```
     pip3 install -r requirements.txt
 ```
+4. Fai partire lo script `library_book.sql` sul tuo server MySQL
 
 ## Utilizzo
 Avvia il file app.py tramite `python3 app.py`. 
