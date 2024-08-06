@@ -42,13 +42,13 @@ Per ulteriori informazioni consultare la documentazione di [flask_mysqldb](https
 1. Clona la repo
 `git clone https://github.com/angelof-exe/flask-library.git`
 
-2. Crea un ambiente virtuale e attivarlo _(Opzionale)_ 
+2. Crea un ambiente virtuale e attivalo _(Opzionale)_ 
 ```
 python3 -m venv venv
 
 . venv/bin/activate
 ```
-Per altre informazioni consulare la [documentazione di Python sul come creare ambienti virtuali.](https://docs.python.org/3/library/venv.html#creating-virtual-environments)
+Per altre informazioni consulatare la [documentazione di Python sul come creare ambienti virtuali.](https://docs.python.org/3/library/venv.html#creating-virtual-environments)
 
 3. Installare i moduli necessari:
 
